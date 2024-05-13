@@ -1,7 +1,26 @@
 @import "./_variables"
 
+@mixin displayType($display,$justify,$align,$direction:column)
+  display: $display
+  justify-content: $justify
+  align-items: $align
+  flex-direction: $direction
+@mixin transparentButton()
+  border: none
+  padding: 0px
+  background: transparent
+
 *
   box-sizing: border-box
   font-family: $family, sans-serif
   font-weight: $normal-weight
   font-size: $size
+
+header
+  @include displayType(flex,space-between,center,row )
+  padding: 2rem 1rem
+
+  button
+    @include transparentButton()
+    ion-icon
+      color: $primary-darkBlue
