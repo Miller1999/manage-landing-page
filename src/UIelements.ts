@@ -2,6 +2,27 @@ import Logo from "./assets/logo.svg";
 import Background from "./assets/bg-tablet-pattern.svg";
 import PresentationImage from "./assets/illustration-intro.svg";
 
+const featuresInfo = [
+	{
+		number: "01",
+		title: "Track company-wide progress",
+		description:
+			"See how your day-to-day tasks fit into the wider vision. Go from tracking progress at the milestone level all the way done to the smallest of details. Never lose sight of the bigger picture again.",
+	},
+	{
+		number: "02",
+		title: "Advanced built-in reports",
+		description:
+			"Set internal delivery estimates and track progress toward company goals. Our customisable dashboard helps you build out the reports you need to keep key stakeholders informed.",
+	},
+	{
+		number: "03",
+		title: "Everything you need in one place",
+		description:
+			"Stop jumping from one service to another to communicate, store files, track tasks and share documents. Manage offers an all-in-one team productivity solution.",
+	},
+];
+
 const createElement = (
 	tagName: string,
 	className: string = "",
@@ -46,6 +67,30 @@ const createButton = (className: string, text: string): HTMLElement => {
 	return button;
 };
 
+const createArticle = (
+	num: string,
+	title: string,
+	desc: string
+): HTMLElement => {
+	const article = createElement("article", "features__item");
+	const numContainer = createElement("span", "article__header-num", num);
+	const articleTitle = createElement("h3", "article__header-title", title);
+	const articleDescription = createElement(
+		"p",
+		"article__main-description",
+		desc
+	);
+	const articleHeader = createDiv("article__header-container", [
+		numContainer,
+		articleTitle,
+	]);
+	const articleMain = createDiv("article__main-container", [
+		articleDescription,
+	]);
+	article.append(articleHeader, articleMain);
+	return article;
+};
+
 const createHeader = () => {
 	const header = createElement("header", "header");
 	const logoHeader = createElement("img", "header__logo", "", { src: Logo });
@@ -63,7 +108,9 @@ const createMain = (): HTMLElement => {
 		src: PresentationImage,
 		alt: "presentation image",
 	});
-	const bg = createElement("img", "presentation__bg", "", { src: Background });
+	const presentationBg = createElement("img", "presentation__bg", "", {
+		src: Background,
+	});
 	const imgPreContainer = createDiv("presentation__image-container", [imgPre]);
 	const titlePresentation = createElement(
 		"h1",
@@ -84,12 +131,47 @@ const createMain = (): HTMLElement => {
 		descriptionPresentation,
 		buttonPresentation,
 	]);
-	const presentationSection = createSection("presentation", [
+	const presentation = createSection("presentation", [
 		imgPreContainer,
-		bg,
+		presentationBg,
 		infoPreContainer,
 	]);
-	main.append(presentationSection);
+	const featureBg = createElement("img", "features__bg", "", {
+		src: Background,
+	});
+	const titleFeatures = createElement(
+		"h2",
+		"features__info-title",
+		"What’s different about Manage?"
+	);
+	const descriptionFeatures = createElement(
+		"p",
+		"features__info-description",
+		"Manage provides all the functionality your team needs, without the complexity. Our software is tailor-made for modern digital product teams. "
+	);
+	const infoFeaturesContainer = createDiv("features__info-container", [
+		titleFeatures,
+		descriptionFeatures,
+	]);
+	const featuresItems: HTMLElement[] = [];
+	featuresInfo.forEach((feature) => {
+		const newArticle = createArticle(
+			feature.number,
+			feature.title,
+			feature.description
+		);
+		featuresItems.push(newArticle);
+	});
+	const featuresItemsContainer = createDiv(
+		"features__items-container",
+		featuresItems
+	);
+	const features = createSection("features", [
+		featureBg,
+		infoFeaturesContainer,
+		featuresItemsContainer,
+	]);
+	main.append(presentation, features);
 	return main;
 };
 
