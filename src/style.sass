@@ -38,13 +38,12 @@ html,body
 
 .main
   @include displayType(flex,normal,center,column)
-  padding: 1rem
   section
     @include displayType(flex,normal,center,column)
     width: 100%
     padding: 2rem 0rem
   .presentation
-    padding: 0rem
+    padding: 1rem
     position: relative
     .presentation__image-container
       width: 100%
@@ -72,6 +71,7 @@ html,body
         @include normalButton()
   .features
     position: relative
+    padding: 1rem
     .features__bg
       position: absolute
       width: 100%
@@ -124,6 +124,7 @@ html,body
             line-height: 1.75rem
   .testimonials
     width: 100%
+    padding: 1rem
     gap: 5rem
     @include displayType(flex,normal,center,column)
     .testimonials-title
@@ -154,3 +155,19 @@ html,body
             font-weight: $strong-weight
           .testimonialItem__description
             color: $Neutral-grayBlue
+    .testimonials__button
+      @include normalButton()
+  .final
+    padding: 1rem
+    text-align: center
+    @include displayType(flex,normal,center,column)
+    background: url("./assets/bg-simplify-section-mobile.svg") $primary-red no-repeat center left
+    .final__title
+      font-size: 3rem
+      line-height: 3rem
+      font-weight: $strong-weight
+      color: white
+    .final__button
+      @include normalButton()
+      color: $primary-red
+      background: white

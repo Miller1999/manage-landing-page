@@ -238,12 +238,21 @@ const createMain = (): HTMLElement => {
 	const testimonialsContainer = createDiv("testimonials__items-container", [
 		testimonialSlider,
 	]);
+	const buttonTestimonial = createButton("testimonials__button", "Get Started");
 
 	const testimonials = createSection("testimonials", [
 		testimonialsTitle,
 		testimonialsContainer,
+		buttonTestimonial,
 	]);
-	main.append(presentation, features, testimonials);
+	const finalTitle = createElement(
+		"h2",
+		"final__title",
+		"Simplify how your team works today"
+	);
+	const finalButton = createButton("final__button", "Get Started");
+	const finalSection = createSection("final", [finalTitle, finalButton]);
+	main.append(presentation, features, testimonials, finalSection);
 	return main;
 };
 
