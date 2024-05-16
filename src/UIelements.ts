@@ -124,23 +124,22 @@ const createArticle = (
 	article.append(articleHeader, articleMain);
 	return article;
 };
-
-const createCard = (img: string, name: string, desc: string): HTMLElement => {
-	const card = createElement("article", "testimonial__item");
-	const profile = createElement("img", "testimonialItem__image", "", {
+const createCard = (
+	id: string,
+	img: string,
+	name: string,
+	desc: string
+): HTMLElement => {
+	const card = createElement("article", "testimonial__item", "", { id: id });
+	const cardImage = createElement("img", "testimonialItem__image", "", {
 		src: img,
 		alt: name,
 	});
-	const nameTestimonial = createElement("span", "testimonialItem__name", name);
-	const testimonialDesc = createElement(
-		"p",
-		"testimonialItem__description",
-		desc
-	);
-	card.append(profile, nameTestimonial, testimonialDesc);
+	const cardName = createElement("span", "testimonialItem__name", name);
+	const cardDesc = createElement("p", "testimonialItem__description", desc);
+	card.append(cardImage, cardName, cardDesc);
 	return card;
 };
-
 const createHeader = () => {
 	const header = createElement("header", "header");
 	const logoHeader = createElement("img", "header__logo", "", { src: Logo });
@@ -229,42 +228,20 @@ const createMain = (): HTMLElement => {
 	);
 	const testimonialItems: HTMLElement[] = [];
 	testimonialsInfo.forEach((test) => {
-		const label = createElement(
-			"label",
-			"testimonial__item",
-			`
-			<article class="">
-				<img class="testimonialItem__image" src=${test.image} alt=${test.name}/>
-				<span class="testimonialItem__name">${test.name}</span>
-				<p class="testimonialItem__description">${test.testimony}</p>
-			</article>
-		`,
-			{
-				id: test.id,
-				for: test.id,
-			}
-		);
-		testimonialItems.push(label);
+		const newCard = createCard(test.id, test.image, test.name, test.testimony);
+		testimonialItems.push(newCard);
 	});
-	const inputs: HTMLElement[] = [];
-	testimonialsInfo.forEach((item) => {
-		const input = createElement("input", "", "", {
-			type: "radio",
-			name: "slider-1",
-			id: item.id,
-		});
-		inputs.push(input);
-	});
-	inputs[0].setAttribute("checked", "true");
-	const slider = createDiv("slider", inputs);
-	const testimonialsContainer = createDiv(
-		"testimonials__items-container",
+	const testimonialSlider = createDiv(
+		"testimonial__items-slider",
 		testimonialItems
 	);
-	slider.append(testimonialsContainer);
+	const testimonialsContainer = createDiv("testimonials__items-container", [
+		testimonialSlider,
+	]);
+
 	const testimonials = createSection("testimonials", [
 		testimonialsTitle,
-		slider,
+		testimonialsContainer,
 	]);
 	main.append(presentation, features, testimonials);
 	return main;

@@ -130,71 +130,27 @@ html,body
       color: $primary-darkBlue
       font-size: 2rem
       font-weight: $strong-weight
-    .slider
-      width: 320px
-      height: 300px
-      transform-style: preserve-3d
-      input
-        display: none
-      .testimonials__items-container
-        position: relative
-        width: 100%
-        height: 100%
-        display: grid
-        grid-template-columns: repeat(4,minmax(300px,1fr))
-        gap: 0.5rem
+    .testimonials__items-container
+      position: relative
+      width: 100%
+      height: 100%
+      .testimonial__items-slider
+        display: flex
+        gap: 1rem
         .testimonial__item
-          width: 100%
-          article
-            left: 0
-            right: 0
-            margin: 0 auto
-            width: 100%
-            background: $Netural-gray
-            @include displayType(flex,space-between,center,column )
-            padding: 5rem 2rem 1rem 2rem
-            min-height: 15rem
-            max-height: 20rem
-            text-align: center
-            .testimonialItem__image
-              position: absolute
-              width: 6.25rem
-              top: -3.125rem
-            .testimonialItem__name
-              color: $primary-darkBlue
-              font-weight: $strong-weight
-            .testimonialItem__description
-              color: $Neutral-grayBlue
-  #person-1:checked ~ .testimonials__items-container #person-1
-    opacity: 1
-  #person-2:checked ~ .testimonials__items-container #person-2
-    opacity: 1
-    transform: translateX(-300px)
-  #person-2:checked ~ .testimonials__items-container #person-1
-    transform: translateX(-300px)
-  #person-2:checked ~ .testimonials__items-container #person-3
-    transform: translateX(-300px)
-  #person-3:checked ~ .testimonials__items-container #person-3
-    opacity: 1
-    transform: translateX(-600px)
-  #person-3:checked ~ .testimonials__items-container #person-2
-    opacity: 1
-    transform: translateX(-600px)
-  #person-3:checked ~ .testimonials__items-container #person-1
-    opacity: 1
-    transform: translateX(-900px)
-  #person-3:checked ~ .testimonials__items-container #person-4
-    opacity: 1
-    transform: translateX(-600px)
-  #person-4:checked ~ .testimonials__items-container #person-4
-    opacity: 1
-    transform: translateX(-900px)
-  #person-4:checked ~ .testimonials__items-container #person-1
-    opacity: 1
-    transform: translateX(-900px)
-  #person-4:checked ~ .testimonials__items-container #person-2
-    opacity: 1
-    transform: translateX(-900px)
-  #person-4:checked ~ .testimonials__items-container #person-3
-    opacity: 1
-    transform: translateX(-900px)
+          min-width: 100%
+          background: $Neutral-gray
+          @include displayType(flex,space-between,center,column )
+          padding: 5rem 2rem 1rem 2rem
+          min-height: 15rem
+          max-height: 20rem
+          text-align: center
+          .testimonialItem__image
+            position: absolute
+            width: 6.25rem
+            top: -3.125rem
+          .testimonialItem__name
+            color: $primary-darkBlue
+            font-weight: $strong-weight
+          .testimonialItem__description
+            color: $Neutral-grayBlue
