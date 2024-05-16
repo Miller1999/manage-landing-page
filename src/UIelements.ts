@@ -1,6 +1,10 @@
 import Logo from "./assets/logo.svg";
 import Background from "./assets/bg-tablet-pattern.svg";
 import PresentationImage from "./assets/illustration-intro.svg";
+import Person1 from "./assets/avatar-ali.png";
+import Person2 from "./assets/avatar-anisha.png";
+import Person3 from "./assets/avatar-richard.png";
+import Person4 from "./assets/avatar-shanai.png";
 
 const featuresInfo = [
 	{
@@ -23,6 +27,36 @@ const featuresInfo = [
 	},
 ];
 
+const testimonialsInfo = [
+	{
+		id: "person-1",
+		image: Person1,
+		name: "Ali Bravo",
+		testimony:
+			"“We have been able to cancel so many other subscriptions since using Manage. There is no more cross-channel confusion and everyone is much more focused.”",
+	},
+	{
+		id: "person-2",
+		image: Person2,
+		name: "Anisha Li",
+		testimony:
+			"“Manage has supercharged our team’s workflow. The ability to maintain visibility on larger milestones at all times keeps everyone motivated.”",
+	},
+	{
+		id: "person-3",
+		image: Person3,
+		name: "Richard Watts",
+		testimony:
+			"“Manage allows us to provide structure and process. It keeps us organized and focused. I can’t stop recommending them to everyone I talk to!”",
+	},
+	{
+		id: "person-4",
+		image: Person4,
+		name: "Shanai Gough",
+		testimony:
+			"“Their software allows us to track, manage and collaborate on our projects from anywhere. It keeps the whole team in-sync without being intrusive.”",
+	},
+];
 const createElement = (
 	tagName: string,
 	className: string = "",
@@ -89,6 +123,22 @@ const createArticle = (
 	]);
 	article.append(articleHeader, articleMain);
 	return article;
+};
+
+const createCard = (img: string, name: string, desc: string): HTMLElement => {
+	const card = createElement("article", "testimonial__item");
+	const profile = createElement("img", "testimonialItem__image", "", {
+		src: img,
+		alt: name,
+	});
+	const nameTestimonial = createElement("span", "testimonialItem__name", name);
+	const testimonialDesc = createElement(
+		"p",
+		"testimonialItem__description",
+		desc
+	);
+	card.append(profile, nameTestimonial, testimonialDesc);
+	return card;
 };
 
 const createHeader = () => {
@@ -171,7 +221,52 @@ const createMain = (): HTMLElement => {
 		infoFeaturesContainer,
 		featuresItemsContainer,
 	]);
-	main.append(presentation, features);
+
+	const testimonialsTitle = createElement(
+		"h2",
+		"testimonials-title",
+		"What they've said"
+	);
+	const testimonialItems: HTMLElement[] = [];
+	testimonialsInfo.forEach((test) => {
+		const label = createElement(
+			"label",
+			"testimonial__item",
+			`
+			<article class="">
+				<img class="testimonialItem__image" src=${test.image} alt=${test.name}/>
+				<span class="testimonialItem__name">${test.name}</span>
+				<p class="testimonialItem__description">${test.testimony}</p>
+			</article>
+		`,
+			{
+				id: test.id,
+				for: test.id,
+			}
+		);
+		testimonialItems.push(label);
+	});
+	const inputs: HTMLElement[] = [];
+	testimonialsInfo.forEach((item) => {
+		const input = createElement("input", "", "", {
+			type: "radio",
+			name: "slider-1",
+			id: item.id,
+		});
+		inputs.push(input);
+	});
+	inputs[0].setAttribute("checked", "true");
+	const slider = createDiv("slider", inputs);
+	const testimonialsContainer = createDiv(
+		"testimonials__items-container",
+		testimonialItems
+	);
+	slider.append(testimonialsContainer);
+	const testimonials = createSection("testimonials", [
+		testimonialsTitle,
+		slider,
+	]);
+	main.append(presentation, features, testimonials);
 	return main;
 };
 

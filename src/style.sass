@@ -25,6 +25,9 @@
   font-weight: $normal-weight
   font-size: $size
 
+html,body
+  overflow-x: hidden
+
 .header
   @include displayType(flex,space-between,center,row )
   padding: 2rem 1rem
@@ -42,6 +45,7 @@
     padding: 2rem 0rem
   .presentation
     padding: 0rem
+    position: relative
     .presentation__image-container
       width: 100%
       .presentation__image
@@ -49,8 +53,8 @@
     .presentation__bg
       width: 125%
       position: absolute
-      top: -10%
-      left: 25%
+      top: -30%
+      left: 20%
       z-index: -1
     .presentation__info-container
       @include displayType(flex,normal,center,column)
@@ -72,8 +76,8 @@
       position: absolute
       width: 100%
       z-index: -1
-      top: -80%
-      right: -70%
+      top: -27%
+      right: -60%
     .features__info-container
       @include displayType(flex,normal,center,column)
       width: 100%
@@ -118,3 +122,79 @@
             color: $Neutral-grayBlue
             font-size: .875rem
             line-height: 1.75rem
+  .testimonials
+    width: 100%
+    gap: 5rem
+    @include displayType(flex,normal,center,column)
+    .testimonials-title
+      color: $primary-darkBlue
+      font-size: 2rem
+      font-weight: $strong-weight
+    .slider
+      width: 320px
+      height: 300px
+      transform-style: preserve-3d
+      input
+        display: none
+      .testimonials__items-container
+        position: relative
+        width: 100%
+        height: 100%
+        display: grid
+        grid-template-columns: repeat(4,minmax(300px,1fr))
+        gap: 0.5rem
+        .testimonial__item
+          width: 100%
+          article
+            left: 0
+            right: 0
+            margin: 0 auto
+            width: 100%
+            background: $Netural-gray
+            @include displayType(flex,space-between,center,column )
+            padding: 5rem 2rem 1rem 2rem
+            min-height: 15rem
+            max-height: 20rem
+            text-align: center
+            .testimonialItem__image
+              position: absolute
+              width: 6.25rem
+              top: -3.125rem
+            .testimonialItem__name
+              color: $primary-darkBlue
+              font-weight: $strong-weight
+            .testimonialItem__description
+              color: $Neutral-grayBlue
+  #person-1:checked ~ .testimonials__items-container #person-1
+    opacity: 1
+  #person-2:checked ~ .testimonials__items-container #person-2
+    opacity: 1
+    transform: translateX(-300px)
+  #person-2:checked ~ .testimonials__items-container #person-1
+    transform: translateX(-300px)
+  #person-2:checked ~ .testimonials__items-container #person-3
+    transform: translateX(-300px)
+  #person-3:checked ~ .testimonials__items-container #person-3
+    opacity: 1
+    transform: translateX(-600px)
+  #person-3:checked ~ .testimonials__items-container #person-2
+    opacity: 1
+    transform: translateX(-600px)
+  #person-3:checked ~ .testimonials__items-container #person-1
+    opacity: 1
+    transform: translateX(-900px)
+  #person-3:checked ~ .testimonials__items-container #person-4
+    opacity: 1
+    transform: translateX(-600px)
+  #person-4:checked ~ .testimonials__items-container #person-4
+    opacity: 1
+    transform: translateX(-900px)
+  #person-4:checked ~ .testimonials__items-container #person-1
+    opacity: 1
+    transform: translateX(-900px)
+  #person-4:checked ~ .testimonials__items-container #person-2
+    opacity: 1
+    transform: translateX(-900px)
+  #person-4:checked ~ .testimonials__items-container #person-3
+    opacity: 1
+    transform: translateX(-900px)
