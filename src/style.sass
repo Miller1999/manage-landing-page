@@ -25,8 +25,16 @@
   font-weight: $normal-weight
   font-size: $size
 
+button,li
+  cursor: pointer
+
 html,body
   overflow-x: hidden
+
+.hidden
+  width: 0
+  height: 0
+  visibility: hidden
 
 .header
   @include displayType(flex,space-between,center,row )
@@ -34,6 +42,32 @@ html,body
   .header__menu-button
     @include transparentButton()
     ion-icon
+      color: $primary-darkBlue
+
+.menu
+  position: fixed
+  z-index: 10
+  width: 90%
+  @include displayType(flex,center,center,column)
+  left: 50%
+  transform: translateX(-50%)
+  padding: 2rem
+  background: $Neutral-gray
+  border-radius: .3125rem
+  box-shadow: 0px 10px 100px 1000px transparentize(black, 0.75)
+  .menu__button-close
+    position: absolute
+    top: -35%
+    right: 0
+    @include transparentButton()
+  .menu__list
+    padding: 0
+    margin: 0
+    text-align: center
+    @include displayType(flex,space-evenly,center,column)
+    gap: .5rem
+    .menu__list-item
+      list-style: none
       color: $primary-darkBlue
 
 .main
@@ -69,6 +103,8 @@ html,body
         line-height: 1.3rem
       .presentation__info-button
         @include normalButton()
+      .presentation__info-button:hover
+        background: transparentize($primary-red,0.25 )
   .features
     position: relative
     padding: 1rem
@@ -157,6 +193,8 @@ html,body
             color: $Neutral-grayBlue
     .testimonials__button
       @include normalButton()
+    .testimonials__button:hover
+      background: transparentize($primary-red,0.25 )
   .final
     padding: 2rem 1rem
     text-align: center
@@ -171,6 +209,8 @@ html,body
       @include normalButton()
       color: $primary-red
       background: white
+    .final__button:hover
+      background-color: transparentize(white,0.25 )
 .footer
   @include displayType(flex,normal,center,column)
   gap: 2rem
@@ -190,6 +230,8 @@ html,body
     .footer__form-button
       @include normalButton()
       height: 40px
+    .footer__form-button:hover
+      background: transparentize($primary-red,0.25 )
   .footer__lists-container
     @include displayType(flex,space-around,flex-start,row)
     width: 100%
@@ -203,6 +245,8 @@ html,body
         font-size: 12px
         color: $Neutral-gray
         font-weight: $light-weight
+      .list-item:hover
+        color: $primary-red
   .footer__social-container
     width: 100%
     @include displayType(flex,space-around,center,row)
@@ -210,6 +254,10 @@ html,body
       @include transparentButton()
       ion-icon
         color: white
+
+    .footer__social-item:hover
+      ion-icon
+        color: $primary-red
   .footer__copy
     color: $Neutral-grayBlue
     font-size: .5rem

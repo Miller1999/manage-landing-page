@@ -199,7 +199,7 @@ const createList = (
 	}
 	return list;
 };
-const createHeader = () => {
+const createHeader = (): HTMLElement => {
 	const header = createElement("header", "header");
 	const logoHeader = createElement("img", "header__logo", "", { src: Logo });
 	const menuHeaderButton = createButton(
@@ -208,6 +208,22 @@ const createHeader = () => {
 	);
 	header.append(logoHeader, menuHeaderButton);
 	return header;
+};
+
+const createMenu = (): HTMLElement => {
+	const closeButton = createButton(
+		"menu__button-close",
+		`<ion-icon name="close-outline" size="large"></ion-icon>`
+	);
+	const menuContent = createList("menu__list", "menu__list-item", [
+		"Pricing",
+		"Product",
+		"About Us",
+		"Careers",
+		"Community",
+	]);
+	const menu = createDiv("menu hidden", [closeButton, menuContent]);
+	return menu;
 };
 
 const createMain = (): HTMLElement => {
@@ -369,4 +385,4 @@ const createFooter = (): HTMLElement => {
 	);
 	return footer;
 };
-export { createHeader, createMain, createFooter };
+export { createHeader, createMenu, createMain, createFooter };
