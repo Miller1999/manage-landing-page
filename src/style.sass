@@ -6,6 +6,7 @@
   align-items: $align
   flex-direction: $direction
 @mixin transparentButton()
+  @include displayType(flex,center,center,row)
   border: none
   padding: 0px
   background: transparent
@@ -32,19 +33,22 @@ html,body
   overflow-x: hidden
 
 .hidden
-  width: 0
-  height: 0
   visibility: hidden
+  opacity: 0
+  transition: all .7s
 
 .header
   @include displayType(flex,space-between,center,row )
   padding: 2rem 1rem
   .header__menu-button
     @include transparentButton()
+    height: 24px
     ion-icon
+      font-size: 24px
       color: $primary-darkBlue
 
 .menu
+  transition: all .7s
   position: fixed
   z-index: 10
   width: 90%
@@ -57,9 +61,11 @@ html,body
   box-shadow: 0px 10px 100px 1000px transparentize(black, 0.75)
   .menu__button-close
     position: absolute
-    top: -35%
+    top: -30%
     right: 0
     @include transparentButton()
+    ion-icon
+      font-size: 24px
   .menu__list
     padding: 0
     margin: 0
@@ -69,6 +75,11 @@ html,body
     .menu__list-item
       list-style: none
       color: $primary-darkBlue
+
+.hidden-menu
+  opacity: 0
+  transform: translate(-50%,-500px)
+  transition: all .7s
 
 .main
   @include displayType(flex,normal,center,column)
@@ -175,6 +186,7 @@ html,body
         display: flex
         gap: 1rem
         .testimonial__item
+          transition: all .5s
           min-width: 100%
           background: $Neutral-gray
           @include displayType(flex,space-between,center,column )

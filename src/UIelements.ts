@@ -199,21 +199,10 @@ const createList = (
 	}
 	return list;
 };
-const createHeader = (): HTMLElement => {
-	const header = createElement("header", "header");
-	const logoHeader = createElement("img", "header__logo", "", { src: Logo });
-	const menuHeaderButton = createButton(
-		"header__menu-button",
-		`<ion-icon name="menu-sharp" size="large"></ion-icon>`
-	);
-	header.append(logoHeader, menuHeaderButton);
-	return header;
-};
-
 const createMenu = (): HTMLElement => {
 	const closeButton = createButton(
 		"menu__button-close",
-		`<ion-icon name="close-outline" size="large"></ion-icon>`
+		`<ion-icon name="close-outline"></ion-icon>`
 	);
 	const menuContent = createList("menu__list", "menu__list-item", [
 		"Pricing",
@@ -222,8 +211,23 @@ const createMenu = (): HTMLElement => {
 		"Careers",
 		"Community",
 	]);
-	const menu = createDiv("menu hidden", [closeButton, menuContent]);
+	const menu = createDiv("menu hidden-menu", [closeButton, menuContent]);
 	return menu;
+};
+const createHeader = (): HTMLElement => {
+	const header = createElement("header", "header");
+	const logoHeader = createElement("img", "header__logo", "", { src: Logo });
+	const menuHeaderButton = createButton(
+		"header__menu-button",
+		`<ion-icon name="menu-sharp"></ion-icon>`
+	);
+	const menu = createMenu();
+	if (window.innerWidth < 1280) {
+		header.append(logoHeader, menuHeaderButton);
+	} else {
+		header.append(logoHeader, menu);
+	}
+	return header;
 };
 
 const createMain = (): HTMLElement => {

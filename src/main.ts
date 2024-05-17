@@ -1,4 +1,5 @@
 import "./style.sass";
+import { init } from "./functionality";
 import {
 	createFooter,
 	createHeader,
@@ -13,4 +14,10 @@ const main = createMain();
 const footer = createFooter();
 const menu = createMenu();
 
-app?.append(header, menu, main, footer);
+if (window.innerWidth < 1280) {
+	app?.append(header, menu, main, footer);
+} else {
+	app?.append(header, main, footer);
+}
+
+init();
