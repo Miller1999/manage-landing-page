@@ -229,16 +229,31 @@ html,body
   padding: 2rem 1rem
   background-color: $Neutral-darkBlue
   form
-    @include displayType(flex,center,center,row )
+    @include displayType(flex,center,flex-start,row )
     gap: 1rem
-    .footer__form-input
-      width: 70%
-      padding: .8125rem
-      height: 40px
-      border-radius: 2rem
-      border: none
-      outline: none
-      font-size: .8125rem
+    .footer__form-containerInput
+      @include displayType(flex,normal ,flex-start ,column)
+      width: 100%
+      .footer__form-input
+        width: 100%
+        padding: .8125rem
+        height: 40px
+        border-radius: 2rem
+        border: 1px solid transparent
+        outline: none
+        font-size: .8125rem
+      .footer__form-message
+        opacity: 0
+        font-size: .75rem
+        padding: .5rem 0rem 0rem 1rem
+
+    .error
+      .footer__form-input
+        border: 1px solid red
+        color: red
+      .footer__form-message
+        opacity: 1
+        color: red
     .footer__form-button
       @include normalButton()
       height: 40px

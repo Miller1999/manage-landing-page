@@ -341,8 +341,17 @@ const createFooter = (): HTMLElement => {
 		placeholder: "Updates in your inbox...",
 		type: "email",
 	});
+	const messageForm = createElement(
+		"span",
+		"footer__form-message",
+		"Please insert a valid email"
+	);
 	const buttonForm = createButton("footer__form-button", "GO");
-	const form = createForm([inputForm, buttonForm]);
+	const inputDiv = createDiv("footer__form-containerInput", [
+		inputForm,
+		messageForm,
+	]);
+	const form = createForm([inputDiv, buttonForm]);
 	const leftList = createList("footer__list-left", "list-item", [
 		"Home",
 		"Pricing",
