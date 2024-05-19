@@ -35,9 +35,15 @@ export const init = () => {
 	};
 	const updateSliderPosition = () => {
 		if (slider) {
-			slider.style.transform = `translateX(-${
-				currentSlide * (window.innerWidth - 16)
-			}px)`;
+			if (window.innerWidth < 1280) {
+				slider.style.transform = `translateX(-${
+					currentSlide * (window.innerWidth - 16)
+				}px)`;
+			} else {
+				slider.style.transform = `translateX(-${
+					currentSlide * sliderItemsArray[0].clientWidth - 16 * 10
+				}px)`;
+			}
 			slider.style.transition = "all .5s";
 		}
 	};
@@ -52,6 +58,7 @@ export const init = () => {
 		e.preventDefault();
 	};
 	//Eventos
+	if (window.innerWidth >= 1280) menu?.classList.remove("hidden-menu");
 	hamburguerButton?.addEventListener("click", handleMenu);
 	closeButton?.addEventListener("click", handleMenu);
 	form?.addEventListener("submit", (e) => {

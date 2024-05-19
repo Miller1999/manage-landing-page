@@ -221,11 +221,12 @@ const createHeader = (): HTMLElement => {
 		"header__menu-button",
 		`<ion-icon name="menu-sharp"></ion-icon>`
 	);
+	const headerButton = createButton("header__button", "Get Started");
 	const menu = createMenu();
 	if (window.innerWidth < 1280) {
 		header.append(logoHeader, menuHeaderButton);
 	} else {
-		header.append(logoHeader, menu);
+		header.append(logoHeader, menu, headerButton);
 	}
 	return header;
 };

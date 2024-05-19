@@ -16,3 +16,9 @@ $family: "Be Vietnam Pro"
 $light-weight: 400
 $normal-weight: 500
 $strong-weight: 700
+
+$desktop: 1280px
+
+@mixin desktopView()
+  @media ( min-width:$desktop)
+    @content
